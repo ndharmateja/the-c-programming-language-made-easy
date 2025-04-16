@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dll.h"
+#include "utils.h"
 
 void test_create_and_destroy()
 {
@@ -178,6 +179,27 @@ void test_print_functions()
     printf("PASS: print functions (visually verify)\n\n");
 }
 
+void test_reverse()
+{
+    printf("Running reverse dll...\n");
+    DLL *list = dll_create();
+
+    dll_push_back(list, 1);
+    dll_push_back(list, 2);
+    dll_push_back(list, 3);
+
+    printf("Before:\n");
+    dll_print_forward(list);
+
+    // Reverse
+    reverse_linked_list(list);
+
+    printf("After:\n");
+    dll_print_forward(list);
+
+    dll_destroy(list);
+}
+
 int main()
 {
     test_create_and_destroy();
@@ -186,6 +208,7 @@ int main()
     test_mixed_operations();
     test_edge_cases();
     test_print_functions();
+    test_reverse();
 
     printf("All tests finished.\n");
     return 0;
