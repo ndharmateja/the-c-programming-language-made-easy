@@ -22,7 +22,7 @@ void dll_destroy(DLL *list)
         return;
 
     Node *curr = list->head;
-    while (curr != list->tail)
+    while (curr != NULL)
     {
         Node *temp = curr;
         curr = curr->next;
