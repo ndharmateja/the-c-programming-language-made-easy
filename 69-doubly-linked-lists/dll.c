@@ -21,15 +21,13 @@ void dll_destroy(DLL *list)
     if (list == NULL)
         return;
 
-    Node *curr = list->head->next;
+    Node *curr = list->head;
     while (curr != list->tail)
     {
-        Node *next = curr->next;
-        free(curr);
-        curr = next;
+        Node *temp = curr;
+        curr = curr->next;
+        free(temp);
     }
-    free(list->head);
-    free(list->tail);
     free(list);
 }
 
