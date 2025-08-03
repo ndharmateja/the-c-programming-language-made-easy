@@ -15,28 +15,28 @@ int main()
     // The original parent process
     if (fork_result1 != 0 && fork_result2 != 0)
     {
-        printf("[%d] Parent ID: %d\n", getpid(), getppid());
+        printf("[%d] (root) Parent ID: %d\n", getpid(), getppid());
     }
 
     // The first child process (spawned from the parent process
     // in the first fork) - let us call it child1
     if (fork_result1 == 0 && fork_result2 != 0)
     {
-        printf("[%d] Parent ID: %d\n", getpid(), getppid());
+        printf("[%d] (root's first child) Parent ID: %d\n", getpid(), getppid());
     }
 
     // The second child process (spawned from child1 process
     // in the second fork in child1) - let us call it child2
     if (fork_result1 == 0 && fork_result2 == 0)
     {
-        printf("[%d] Parent ID: %d\n", getpid(), getppid());
+        printf("[%d] (root's first child's child) Parent ID: %d\n", getpid(), getppid());
     }
 
     // The second child process (spawned from the parent process
     // in the second fork) - let us call it child3
     if (fork_result1 != 0 && fork_result2 == 0)
     {
-        printf("[%d] Parent ID: %d\n", getpid(), getppid());
+        printf("[%d] (root's second child) Parent ID: %d\n", getpid(), getppid());
     }
 
     // Wait for all the children to finish in every process
