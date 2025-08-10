@@ -14,7 +14,6 @@ int main()
     }
 
     int arr[N];
-    int start, end;
     for (int i = 0; i < N; i++)
         arr[i] = i + 1;
     int size = sizeof(arr) / sizeof(arr[0]);
@@ -34,10 +33,8 @@ int main()
         close(fd[0]);
 
         // Find the sum of the first half of the array
-        start = 0;
-        end = size / 2;
         int sum = 0;
-        for (int i = start; i < end; i++)
+        for (int i = 0; i < size / 2; i++)
         {
             sum += arr[i];
         }
@@ -61,10 +58,8 @@ int main()
         close(fd[1]);
 
         // Find the sum of the second half of the array
-        start = size / 2;
-        end = size;
         int sum = 0;
-        for (int i = start; i < end; i++)
+        for (int i = size / 2; i < size; i++)
         {
             sum += arr[i];
         }
