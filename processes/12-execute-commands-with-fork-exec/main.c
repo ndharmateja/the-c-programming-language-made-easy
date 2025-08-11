@@ -23,7 +23,7 @@ int main()
             int errno_val = errno;
             printf("errno: %d\n", errno_val);
             printf("line after execl\n");
-            return 0;
+            return 2;
         }
 
         printf("This shouldn't be printed\n");
@@ -52,7 +52,7 @@ int main()
             int errno_val = errno;
             printf("errno: %d\n", errno_val);
             printf("line after execl\n");
-            return 0;
+            return 3;
         }
 
         printf("This shouldn't be printed\n");
