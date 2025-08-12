@@ -31,19 +31,6 @@ int main()
         }
     }
 
-    // Parent process
-    // Wait for 3 sec and then pause the child process
-    printf("***Waiting for 3 seconds before pausing the child process***\n");
-    sleep(3);
-    kill(fork_id, SIGSTOP);
-    printf("***Paused the child process for 4 sec***\n");
-
-    // Wait for 4 sec and then continue the child process
-    printf("***Waiting for 4 seconds before continuing the child process***\n");
-    sleep(4);
-    kill(fork_id, SIGCONT);
-    printf("***Continued the child process***\n");
-
     // Child's process id is stored in fork_id
     // Wait for 2 seconds and then kill the child process
     // using SIGKILL (the function is 'kill' no matter what
