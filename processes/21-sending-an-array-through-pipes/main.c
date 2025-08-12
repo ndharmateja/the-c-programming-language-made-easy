@@ -90,6 +90,9 @@ int main()
         return 4;
     }
 
+    // Close the read end of the pipe
+    close(fd[0]);
+
     // Find the sum of the numbers and print them
     int sum = 0;
     printf("[p] ");
