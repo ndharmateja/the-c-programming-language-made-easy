@@ -36,7 +36,7 @@ int main()
     printf("***Waiting for 3 seconds before pausing the child process***\n");
     sleep(3);
     kill(fork_id, SIGSTOP);
-    printf("***Paused the child process for 2 sec***\n");
+    printf("***Paused the child process for 4 sec***\n");
 
     // Wait for 4 sec and then continue the child process
     printf("***Waiting for 4 seconds before continuing the child process***\n");
