@@ -5,6 +5,8 @@
 #include <errno.h>
 #include <signal.h>
 
+// The signal handlers should be atomic operations
+
 // Handling sigtstp signal
 // It will override the stopping or pausing of the process
 // and simply execute this function handler
