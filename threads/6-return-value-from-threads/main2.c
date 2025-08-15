@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <time.h>
 
-#define TEN_MILLION 10000000
 #define NUM_THREADS 8
 
 // Objective:

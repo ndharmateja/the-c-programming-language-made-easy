@@ -4,8 +4,6 @@
 #include <unistd.h>
 #include <time.h>
 
-#define TEN_MILLION 10000000
-
 int mails = 0;
 pthread_mutex_t mutex;
 
