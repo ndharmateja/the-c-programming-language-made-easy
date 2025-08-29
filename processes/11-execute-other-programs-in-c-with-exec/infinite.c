@@ -11,8 +11,8 @@ int main()
     // We are going to run this program itself through exec
     // => infinite loop
     if (execl(
-            "/Users/dharma/projects/the-c-programming-language-made-easy/processes/13-execute-other-programs-in-c/a.out",
-            "/Users/dharma/projects/the-c-programming-language-made-easy/processes/13-execute-other-programs-in-c/a.out",
+            "./a.out",
+            "./a.out",
             NULL) == -1)
     {
         printf("execlp failed\n");
