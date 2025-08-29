@@ -26,8 +26,11 @@ void *f()
     // If NUM_THREADS were 2, this barrier would never be broken
     // and they will wait forever
     pthread_barrier_wait(&barrier);
-
     printf("Reached the barrier\n");
+
+    // Sleep for 2 seconds
+    sleep(2);
+
     return NULL;
 }
 
