@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#define NUM_THREADS 3
+#define NUM_THREADS 6
 
 // Thread barriers are used to synchronize threads
 // that are running in parallel
