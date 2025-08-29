@@ -26,7 +26,7 @@ void *f()
     // If NUM_THREADS were 2, this barrier would never be broken
     // and they will wait forever
     pthread_barrier_wait(&barrier);
-    printf("Reached the barrier\n");
+    printf("Went through the barrier\n");
 
     return NULL;
 }
@@ -38,9 +38,10 @@ int main()
 
     // Create NUM_THREADS threads
     pthread_t th[NUM_THREADS];
-    for (int i = 0; i < NUM_THREADS; i++) {
+    for (int i = 0; i < NUM_THREADS; i++)
+    {
         pthread_create(th + i, NULL, &f, NULL);
-        
+
         // We can very clearly see the behaviour of the barrier
         // by adding a sleep here
         // So everytime three threads are created, they all
