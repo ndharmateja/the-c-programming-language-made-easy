@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#define NUM_THREADS 2
+#define NUM_THREADS 3
 
 // Thread barriers are used to synchronize threads
 // that are running in parallel
@@ -24,6 +24,7 @@ void *f()
 
     // Here, this barrier will wait until 3 threads have reached it
     // If NUM_THREADS were 2, this barrier would never be broken
+    // and they will wait forever
     pthread_barrier_wait(&barrier);
 
     printf("Reached the barrier\n");
