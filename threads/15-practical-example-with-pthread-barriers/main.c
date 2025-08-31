@@ -24,10 +24,26 @@
 // each of the 8 threads and in the main thread after the status update)
 // 7. Now we can print the results in each of the threads
 
-#define NUM_THREADS 8
+// Diagram of the flow:
+//                threads  0 1 2 3 4 5 6 7 8       main
+//                         | | | | | | | | |        |
+//                             roll dice            |
+//                         | | | | | | | | |        |
+//                         v v v v v v v v v        v
+//      roll dice barrier --------------------------------------
+//                         | | | | | | | | |        |
+//                         | | | | | | | | |  calculate max
+//                         | | | | | | | | |  & update statuses
+//                         | | | | | | | | |        |
+//                         v v v v v v v v v        v
+//  status update barrier --------------------------------------
+//                         | | | | | | | | |
+//                         v v v v v v v v v
+//                           print results
 
 // Array to store the dice values
 // Array to store if a thread has won
+#define NUM_THREADS 8
 int dice_values[NUM_THREADS];
 int status[NUM_THREADS] = {0};
 
