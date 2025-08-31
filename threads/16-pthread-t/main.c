@@ -22,7 +22,7 @@ void *f()
     // but it is different from the above print statement
     // This is managed by the OS itself (specific to linux)
     // and is the internal thread id
-    printf("%d\n", (pid_t)syscall(SYS_gettid));
+    printf("OS level thread id: %d\n", (pid_t)syscall(SYS_gettid));
     return NULL;
 }
 
