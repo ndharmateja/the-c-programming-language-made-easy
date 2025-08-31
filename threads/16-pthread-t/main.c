@@ -14,11 +14,14 @@ void *f()
     // This should not be done
     // as pthread_t is an opaque type
     // as we wouldn't know what type it is
-    printf("Hello from thread %lu\n", (unsigned long)pthread_self());
+    // This is managed at the pthread API level
+    printf("\nHello from thread %lu\n", (unsigned long)pthread_self());
 
     // To print the thread id itself
     // we can do that using a syscall
     // but it is different from the above print statement
+    // This is managed by the OS itself (specific to linux)
+    // and is the internal thread id
     printf("%d\n", (pid_t)syscall(SYS_gettid));
     return NULL;
 }
