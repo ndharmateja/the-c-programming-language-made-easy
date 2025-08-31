@@ -5,7 +5,7 @@
 #include <time.h>
 #include <sys/syscall.h>
 
-#define NUM_THREADS 4
+#define NUM_THREADS 1
 
 void *f()
 {
