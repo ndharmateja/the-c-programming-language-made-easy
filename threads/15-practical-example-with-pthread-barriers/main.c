@@ -9,13 +9,29 @@
 // The main thread calculates the winner
 // Each thread prints a message with whether or not they lost or won
 
+// Solution
+// 1. We use pthread barriers to synchronize the threads
+// 2. We have two barriers, one for the dice rolls and one for the status update
+// 3. We can't have the main thread calculate the max and update the statuses
+// before the dice values are calculated by the threads
+// 4. So we wait for the dice roll barrier in each of the 8 threads
+// after calculating the dice values and we wait for the same
+// dice roll barrier in the main thread before updating the statuses
+// so that the main thread waits until all the 8 threads rolled the dice
+// 5. Now the issue is that each of the 8 threads have to wait for the main
+// thread to update the statuses before printing the status results
+// 6. So we synchronize again, this time with the status update barrier (in
+// each of the 8 threads and in the main thread after the status update)
+// 7. Now we can print the results in each of the threads
+
 #define NUM_THREADS 8
 
 // Array to store the dice values
 // Array to store if a thread has won
-// Barrier
 int dice_values[NUM_THREADS];
 int status[NUM_THREADS] = {0};
+
+// Barriers for the two synchronization points
 pthread_barrier_t barrier_roll_dice;
 pthread_barrier_t barrier_status_update;
 
@@ -24,13 +40,14 @@ void *roll_dice(void *arg)
     int index = *(int *)arg;
     dice_values[index] = rand() % 6 + 1;
 
-    // The if condition has to run after the main thread updates the status
     // Here we wait for all the threads to synchronize before the main thread
     // can calculate the max and update the statuses
     pthread_barrier_wait(&barrier_roll_dice);
 
     // We have to wait again for the main thread to update the status
     // so that we print the status after the main thread has updated it
+    // This barrier is crossed only after all the 8 threads reach here
+    // and the main thread has updated the statuses
     pthread_barrier_wait(&barrier_status_update);
 
     // Print the result based on the status
@@ -71,6 +88,7 @@ int main()
     // We wait for the roll dice barrier here as it is at this point
     // we need to have the dice rolls calculated
     // before we can find the max and update the statuses
+    // This barrier is crossed only after all the 8 threads roll the dice
     pthread_barrier_wait(&barrier_roll_dice);
 
     // Find the max among the dice values
