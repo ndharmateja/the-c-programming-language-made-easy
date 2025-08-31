@@ -52,8 +52,8 @@ int main()
 
     // Initialize the barriers
     // We use NUM_THREADS + 1 because we need to consider the main thread as well
-    pthread_barrier_init(&barrier_roll_dice, NUM_THREADS + 1);
-    pthread_barrier_init(&barrier_status_update, NUM_THREADS + 1);
+    pthread_barrier_init(&barrier_roll_dice, NULL, NUM_THREADS + 1);
+    pthread_barrier_init(&barrier_status_update, NULL, NUM_THREADS + 1);
 
     // Create threads
     pthread_t th[NUM_THREADS];
